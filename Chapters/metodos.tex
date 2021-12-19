@@ -1,46 +1,34 @@
 \chapter{Desenvolvimento do projeto}
 \label{chap:metod}
-Nesta seção será descrito o procedimento utilizado para construção inicial do robô Walker, incluindo as fases conceitual e design.  Será apresentado a ideação do projeto, especificações e as funcionalidades.
+O primeiro passo para o desenvolvimento desse estudo foi a montagem do robô Turtlebot3 e a realização do tutorial disponível no site \cite{ROBOTIS}. Foi instalada a imagem do Ubuntu 20.04 na Raspberry Pi, o ROS Noetic, as dependências necessárias e os pacotes do Turtlebot3 ros-noetic-dynamixel-sdk, ros-noetic-turtlebot3-msgs e o ros-noetic-turtlebot3.
 
-\section{Ideação}
-%escrever oq sera apresentado
+Para implementar o planejador de trajetória PRM foi feita inicialmente uma busca das soluções já disponíveis na internet. Foi encontrado um pacote no GitHub no Link \cite{mwswartwout} que implementa o planejador PRM como Plugin no ROS. O pacote foi desenvolvido para outra versão de ROS, foram necessário fazer algumas modificações no mesmo e também instalar algumas dependências necessárias: occupancy\textunderscore grid\textunderscore utils, ros\textunderscore noetic\textunderscore tf2\textunderscore bullet, ros\textunderscore noetic\textunderscore ompl e ros\textunderscore noetic\textunderscore ompl\textunderscore dbgsym.
 
-\subsection{Arquitetura Geral}
- A arquitetura geral, apresentada na Figura \ref{fig:Arquitetura geral}, relaciona de modo geral a interface do usuário, com a central de gerenciamento do sistema e com a interface com hardware. Neste contexto, a interface do usuário representa o contato direto com o usuário por meio de um botão \textit{on/off}, um \textit{joystick} e por acesso remoto, através de um computador devidamente conectado.
+No site \url{http://wiki.ros.org/navigation/Tutorials/Writing%20A%20Global%20Path%20Planner%20As%20Plugin%20in%20ROS} é encontrado um tutorial de como desenvolver o planejador como Plugin e como utilizá-lo. 
+Para selecionar o PRM como planejador global do Move Base é necessário alterar o parâmetro base\textunderscore global\textunderscore planner do pacote turtlebot3\textunderscore navigation para o PRM.
 
- \begin{figure} [h!]	
-    \centering
+Foi desenvolvido um repositório no GitHub com o planejador PRM com as modificações e o tutorial de como instalar as dependências necessárias. O repositório se encontra nesse site \url{https://github.com/seixasxbr/prm_planner}.
 
-    \caption{Arquitetura Geral}
-    \includegraphics[width=0.8\textwidth]{general_architecture}
-    \caption*{Fonte: Autoria própria.}
-    \label{fig:Arquitetura geral}
-\end{figure}	
+\section{Simulação}
 
-Para a central de gerenciamento do sistema utilizou-se o sistema operacional \textit{Ubuntu} 20.04 junto ao framework de robótica ROS \textit{Noetic}. Neste cojunto se encontram as principais funcionalidades do robô: percepção, navegação, detecção e controle. Por fim, no conjunto de saídas estão os atuadores e os alertas sonoro e luminoso.
-
-\subsection{Requisitos técnicos}
-
-%desdobramento da função qualidade
-\subsection{Quality Function Deployment}
-\textit{Quality Function Deployment} é uma ferramenta de qualidade que auxilia na conversão das demandas do cliente em características de qualidade do produto. Dessa forma, no primeiro ciclo do QFD foram analisados os requisistos do cliente e os requisitos técnicos necessários, sinalizando os pontos mais importantes e as relações entre estes. O resultado foi exposto na \ref{fig:QFD}
+A simulação do sistema foi realizada no software Gazebo para validar o funcionamento do planejador de trajetórias PRM. A simulação pode ser vista na Figura \ref{fig:simu}.
 
 \begin{figure} [h!]	
     \centering
-    \caption{ Primeiro ciclo QFD}
-    \includegraphics[width=0.8\textwidth]{Figures/QFD}
+    \caption{Simulação no Gazebo}
+    \includegraphics[width=1\textwidth]{Figures/Screenshot from 2021-12-19 12-58-25 (1).png}
     \caption*{Fonte: Autoria própria.}
-    \label{fig:QFD}
-\end{figure}
- Através do QFD foi possível observar 
+    \label{fig:simu}
+ \end{figure}
 
-% %--------- NEW SECTION ----------------------
-% \section{Interface do Usuário}
-% \label{sec:ui}
-% \lipsum[1]
+\section{Prática}
 
-% %--------- NEW SECTION ----------------------
-% \section{Simulação do sistema}
-% \label{sec:sim}
-% \lipsum[2-4]
+O planejador foi testado também no mundo real, sendo utilizado um labirinto para avaliar a navegação autônoma do robô utilizando o PRM como planejador global. A foto do experimento pode ser visto na Figura \ref{fig:pratica}.
 
+\begin{figure} [h!]	
+    \centering
+    \caption{Simulação no Gazebo}
+    \includegraphics[width=1\textwidth]{Figures/Screenshot from 2021-12-19 13-13-10.png}
+    \caption*{Fonte: Autoria própria.}
+    \label{fig:pratica}
+ \end{figure}
