@@ -20,7 +20,9 @@ O Turtlebot3 tem 2 modelos, o Burger e o Waffle Pi. O modelo escolhido para esse
 
 \section{Probabilistic Roadmap}
 
-O algoritmo Probabilistic Roadmap é um planejador de trajetória que permite que um robô se desloque de um ponto inicial a um ponto final sem a interferência de um operador evitando a colisão com obstáculos. A ideia do planejador é gerar pontos aleatórios no mapa, verificando se esses pontos são espaços livres ou não, e tentando conectar eles com os outros pontos mais próximos já gerados, caso não tenha nenhuma barreira entre esses pontos. A medida que o número de pontos cresce, vão se formando trajetórias entre todos os espaços livres do mapa, como mostrado na Figura \ref{fig:prm}.
+O algoritmo Probabilistic Roadmap é um planejador de trajetória que permite que um robô se desloque de um ponto inicial a um ponto final sem a interferência de um operador evitando a colisão com obstáculos. A ideia do planejador é gerar pontos aleatórios no mapa, verificando se esses pontos são espaços livres ou não, e tentando conectar eles com os outros pontos mais próximos já gerados, caso não tenha nenhuma barreira entre esses pontos. A medida que o número de pontos cresce, vão se formando trajetórias entre todos os espaços livres do mapa, como mostrado na Figura \ref{fig:prm}. 
+
+
 
 \begin{figure} [h!]	
    \centering
@@ -36,7 +38,7 @@ Na fase de questionamento, são declarados no algoritmo o ponto inicial e o pont
 
 \section{Move Base}
 
-O pacote de navegação para ROS utilizado para auxiliar nessa funcionalidade do robô é o Move Base. Através dele é possível declarar uma ação para o robô se deslocar de uma posição inicial para um posição final utilizando um planejador global e um planejador local. Nesse estudo o planejador global que será utilizado é o planejador de trajetória PRM. Na Figura \ref{fig:move} é possível ver um esquemático de como o Move Base funciona
+O pacote de navegação para ROS utilizado para auxiliar nessa funcionalidade do robô é o Move Base. Através dele é possível declarar uma ação para o robô se deslocar de uma posição inicial para um posição final utilizando um planejador global e um planejador local. Nesse estudo o planejador global que será utilizado é o planejador de trajetória PRM. Na Figura \ref{fig:move} é possível ver um esquemático de como o Move Base funciona.
 
 \begin{figure} [h!]	
    \centering
